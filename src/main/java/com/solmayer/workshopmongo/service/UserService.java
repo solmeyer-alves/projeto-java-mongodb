@@ -1,6 +1,7 @@
 package com.solmayer.workshopmongo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,19 @@ public class UserService {
 	public void delete(String id) {
 		findById(id);
 		repository.deleteById(id);
+	}
+	
+	public User update(User obj) {
+		User newObj = repository.findById(obj.getId())
+				.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));		
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
+	
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
 	}
 	
 	public User fromDto(UserDTO objDto) {
