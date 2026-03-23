@@ -1,7 +1,6 @@
 package com.solmayer.workshopmongo.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +49,5 @@ public class UserService {
 	
 	public User fromDto(UserDTO objDto) {
 		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
-	}
+	}  
 }
